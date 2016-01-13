@@ -33,7 +33,7 @@ defmodule Pi do
     w = 1.0 / n
     s0 = 0.0
     # s1 = Enum.reduce(0..(n - 1), s0, fn(i, s) ->
-    s1 = for_each(0, n - 1, s0, fn(i, s) ->
+    s1 = for_each(0, n, s0, fn(i, s) ->
       x = i * w
       s + :math.sqrt(1.0 - x * x)
     end)
@@ -68,7 +68,7 @@ defmodule Pi do
   def calc_pi_range(n, offset, count) do
     w = 1.0 / n
     s0 = 0.0
-    s1 = for_each(offset, offset + count - 1, s0, fn(i, s) ->
+    s1 = for_each(offset, offset + count, s0, fn(i, s) ->
       x = i * w
       s + :math.sqrt(1.0 - x * x)
     end)
