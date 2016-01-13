@@ -24,7 +24,6 @@
 
 defmodule Pi do
 
-  @mod        Pi
   @max_procs  1024
   @timeout    60_000   # 1 minute
 
