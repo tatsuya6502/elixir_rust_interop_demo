@@ -39,7 +39,7 @@ static mut error_atom: ERL_NIF_TERM = 0 as ERL_NIF_TERM;
 nif_init!(b"Elixir.PiNif\0",
           Some(load),    // on load
           None,          // on reload
-          None,          // on upgrade
+          Some(upgrade), // on upgrade
           None,          // on unload
           nif!(b"calc_pi\0",
                1,
@@ -59,6 +59,14 @@ extern "C" fn load(env: *mut ErlNifEnv,
         ok_atom    = enif_make_atom(env, b"ok\0"    as *const u8);
         error_atom = enif_make_atom(env, b"error\0" as *const u8)
     }
+    0
+}
+
+/// 何もしない
+extern "C" fn upgrade(_env: *mut ErlNifEnv,
+                      _priv_data: *mut *mut c_void,
+                      _old_priv_data: *mut *mut c_void,
+                      _load_info: ERL_NIF_TERM)-> c_int {
     0
 }
 

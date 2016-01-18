@@ -56,7 +56,7 @@ pub fn calc_pi_parallel(n: u32, num_threads: u32) -> Result<f64, String> {
         let results = handles.into_iter().map(|h| { h.join().unwrap() });
         // トレイト std::iter::Iterator sum() は Rust 1.5.0 では unstable に
         // 指定されており使えない。代わりに fold() を使う。
-        let pi: f64 = results.into_iter().fold(0.0, |p, acc| { acc + p });
+        let pi: f64 = results.into_iter().fold(0.0, |acc, p| { acc + p });
         Ok(pi)
     }
 }
